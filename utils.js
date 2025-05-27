@@ -138,12 +138,12 @@ export class SettingsManager {
     static setSelectedDeviceType(device_type) {
         switch (device_type) {
             case "PRD":
-                const prd_select = document.getElementById('prd_select');
-                prd_select.checked = true;
+                /*const prd_select = document.getElementById('prd_select');
+                prd_select.checked = true;*/
                 break;
             case "REMOTE":
-                const remote_select = document.getElementById('remote_select');
-                remote_select.checked = true;
+                /*const remote_select = document.getElementById('remote_select');
+                remote_select.checked = true;*/
                 break;
         }
     }

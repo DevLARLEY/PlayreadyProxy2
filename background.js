@@ -3,7 +3,8 @@ import { Cdm } from './jsplayready/cdm.js';
 import { Device } from "./jsplayready/device.js";
 import { Utils } from "./jsplayready/utils.js";
 import { utils } from "./jsplayready/noble-curves.min.js";
-import { AsyncLocalStorage, DeviceManager, SettingsManager } from "./utils.js";
+import { AsyncLocalStorage, DeviceManager, RemoteCDMManager, SettingsManager } from "./utils.js";
+import { RemoteCdm } from "./jsplayready/remote_cdm.js";
 
 class Background {
     static logs = [];
@@ -73,12 +74,12 @@ class Background {
     }
 
     static async parseLicense(decodedLicense, sessionId, tab_url) {
-        const selected_device_name = await DeviceManager.getSelectedPlayreadyDevice();
-        if (!selected_device_name) {
+        if (!Background.wrmHeaderMap.has(sessionId)) {
             return;
         }
 
-        if (!Background.wrmHeaderMap.has(sessionId)) {
+        const selected_device_name = await DeviceManager.getSelectedPlayreadyDevice();
+        if (!selected_device_name) {
             return;
         }
 

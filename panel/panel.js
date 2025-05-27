@@ -15,19 +15,19 @@ toggle.addEventListener('change', async () => {
     await SettingsManager.saveDarkMode(toggle.checked);
 });
 
-const prd_select = document.getElementById('prd_select');
+/*const prd_select = document.getElementById('prd_select');
 prd_select.addEventListener('change', async function (){
     if (prd_select.checked) {
         await SettingsManager.saveSelectedDeviceType("PRD");
     }
-});
+});*/
 
-const remote_select = document.getElementById('remote_select');
+/*const remote_select = document.getElementById('remote_select');
 remote_select.addEventListener('change', async function (){
     if (remote_select.checked) {
         await SettingsManager.saveSelectedDeviceType("REMOTE");
     }
-});
+});*/
 
 const export_button = document.getElementById('export');
 export_button.addEventListener('click', async function() {
@@ -72,7 +72,7 @@ download.addEventListener('click', async function() {
 // =================================================
 
 // ================ Remote CDM ================
-document.getElementById('remoteInput').addEventListener('click', () => {
+/*document.getElementById('remoteInput').addEventListener('click', () => {
     chrome.runtime.sendMessage({ type: "OPEN_PICKER_REMOTE" });
     window.close();
 });
@@ -102,7 +102,7 @@ remote_download.addEventListener('click', async function() {
 const remote_combobox = document.getElementById('remote-combobox');
 remote_combobox.addEventListener('change', async function() {
     await RemoteCDMManager.saveSelectedRemoteCDM(remote_combobox.options[remote_combobox.selectedIndex].text);
-});
+});*/
 // ============================================
 
 const clear = document.getElementById('clear');
