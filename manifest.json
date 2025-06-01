@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "PlayreadyProxy2",
-  "version": "0.8.2",
+  "version": "0.0.1",
   "permissions": [
     "activeTab",
     "tabs",
@@ -45,7 +45,7 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "DevLARLEY@larley.dev",
+      "id": "PlayreadyProxy2_DevLARLEY@larley.dev",
       "strict_min_version": "58.0"
     }
   }
