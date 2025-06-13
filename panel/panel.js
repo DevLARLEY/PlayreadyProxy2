@@ -15,20 +15,6 @@ toggle.addEventListener('change', async () => {
     await SettingsManager.saveDarkMode(toggle.checked);
 });
 
-/*const prd_select = document.getElementById('prd_select');
-prd_select.addEventListener('change', async function (){
-    if (prd_select.checked) {
-        await SettingsManager.saveSelectedDeviceType("PRD");
-    }
-});*/
-
-/*const remote_select = document.getElementById('remote_select');
-remote_select.addEventListener('change', async function (){
-    if (remote_select.checked) {
-        await SettingsManager.saveSelectedDeviceType("REMOTE");
-    }
-});*/
-
 const export_button = document.getElementById('export');
 export_button.addEventListener('click', async function() {
     const logs = await AsyncLocalStorage.getStorage(null);
@@ -69,47 +55,24 @@ download.addEventListener('click', async function() {
         playready_device + ".prd"
     )
 });
-// =================================================
-
-// ================ Remote CDM ================
-/*document.getElementById('remoteInput').addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: "OPEN_PICKER_REMOTE" });
-    window.close();
-});
-
-const remote_remove = document.getElementById('remoteRemove');
-remote_remove.addEventListener('click', async function() {
-    await RemoteCDMManager.removeSelectedRemoteCDM();
-    remote_combobox.innerHTML = '';
-    await RemoteCDMManager.loadSetAllRemoteCDMs();
-    const selected_option = remote_combobox.options[remote_combobox.selectedIndex];
-    if (selected_option) {
-        await RemoteCDMManager.saveSelectedRemoteCDM(selected_option.text);
-    } else {
-        await RemoteCDMManager.removeSelectedRemoteCDMKey();
-    }
-});
-
-const remote_download = document.getElementById('remoteDownload');
-remote_download.addEventListener('click', async function() {
-    const remote_cdm = await RemoteCDMManager.getSelectedRemoteCDM();
-    SettingsManager.downloadFile(
-        await RemoteCDMManager.loadRemoteCDM(remote_cdm),
-        remote_cdm + ".json"
-    )
-});
-
-const remote_combobox = document.getElementById('remote-combobox');
-remote_combobox.addEventListener('change', async function() {
-    await RemoteCDMManager.saveSelectedRemoteCDM(remote_combobox.options[remote_combobox.selectedIndex].text);
-});*/
-// ============================================
 
 const clear = document.getElementById('clear');
 clear.addEventListener('click', async function() {
     chrome.runtime.sendMessage({ type: "CLEAR" });
     key_container.innerHTML = "";
 });
+
+// ================ Command Options ================
+const use_shaka = document.getElementById('use-shaka');
+use_shaka.addEventListener('change', async function (){
+    await SettingsManager.saveUseShakaPackager(use_shaka.checked);
+});
+
+const downloader_name = document.getElementById('downloader-name');
+downloader_name.addEventListener('input', async function (event){
+    await SettingsManager.saveExecutableName(downloader_name.value);
+});
+// =================================================
 
 async function createCommand(json, key_string) {
     const metadata = JSON.parse(json);
@@ -221,13 +184,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     await DeviceManager.loadSetAllPlayreadyDevices();
     await DeviceManager.selectPlayreadyDevice(await DeviceManager.getSelectedPlayreadyDevice());
 
-    await RemoteCDMManager.loadSetAllRemoteCDMs();
-    await RemoteCDMManager.selectRemoteCDM(await RemoteCDMManager.getSelectedRemoteCDM());
-
     checkLogs();
 
-    /*
     use_shaka.checked = await SettingsManager.getUseShakaPackager();
     downloader_name.value = await SettingsManager.getExecutableName();
-    */
 });
