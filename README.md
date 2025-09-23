@@ -14,6 +14,8 @@ This addon requires a PlayReady Device file to work, which is not provided by th
 
 ## Compatibility
 + Compatible (tested) browsers: Edge/Firefox on Windows.
+> [!NOTE]  
+> Some sites may default to Widevine even if PlayReady is supported by both the browser and website. Consider disabling Widevine and trying again
 
 ## Installation
 + Chrome
